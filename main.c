@@ -829,7 +829,7 @@ void edit() {
                     break;
                 case 5:
                     printf("Enter new Phone Number: \n");
-                    scanf("%d", &temp->phone);
+                    scanf("%s", temp->phone);
                     return;
                     break;
                 case 6:
