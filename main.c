@@ -92,10 +92,10 @@ void insert(node *new1) {
         start = new1;
         return;
     }
-    while (temp->rptr != NULL && strcmpi(new1->usn, temp->usn) > 0)
+    while (temp->rptr != NULL && strcmp(new1->usn, temp->usn) > 0)
         temp = temp->rptr;
     if (temp->rptr == NULL) {
-        if (strcmpi(new1->usn, temp->usn) > 0) {
+        if (strcmp(new1->usn, temp->usn) > 0) {
             temp->rptr = new1;
             new1->lptr = temp;
         } else if (temp->lptr == NULL) {
@@ -139,12 +139,12 @@ void print() {
     printf("\nEnter the USN of the student for a detailed description: (Enter 0 to skip)\n");
     scanf("%s", x);
     temp = start;
-    if (strcmpi(x, "0") == 0) {
+    if (strcmp(x, "0") == 0) {
         return;
     }
     while (temp != NULL) {
 
-        if (strcmpi(temp->usn, x) == 0) {
+        if (strcmp(temp->usn, x) == 0) {
 
             printf("\nName: %s\n", temp->name);
             printf("USN: %s\n", temp->usn);
@@ -462,13 +462,13 @@ void fees_due(int cet, int comedk, int mgmt) {
     while (temp != NULL) {
 
 
-        if (strcmpi(temp->type, "cet") == 0) {
+        if (strcmp(temp->type, "cet") == 0) {
             bal = cet - temp->user_fees;
         }
-        if (strcmpi(temp->type, "comedk") == 0) {
+        if (strcmp(temp->type, "comedk") == 0) {
             bal = comedk - temp->user_fees;
         }
-        if (strcmpi(temp->type, "mgmt") == 0) {
+        if (strcmp(temp->type, "mgmt") == 0) {
             bal = mgmt - temp->user_fees;
         }
         if (bal > 0) {
@@ -790,7 +790,7 @@ void edit() {
     temp = start;
     while (temp != NULL) {
 
-        if (strcmpi(temp->usn, x) == 0) {
+        if (strcmp(temp->usn, x) == 0) {
 
             printf("Enter the corresponding field number to edit:\n\n");
             printf("\n1.Name\n");
@@ -829,7 +829,7 @@ void edit() {
                     break;
                 case 5:
                     printf("Enter new Phone Number: \n");
-                    scanf("%d", &temp->phone);
+                    scanf("%s", temp->phone);
                     return;
                     break;
                 case 6:
@@ -866,7 +866,7 @@ void deleteNode(char usn[]) {
         return;
     }
     if (start->rptr == NULL) {
-        if (strcmpi(temp->usn, usn) == 0) {
+        if (strcmp(temp->usn, usn) == 0) {
             printf("Deleted Student Entry:\n Name: %s\n USN: %s\n\n", temp->name, temp->usn);
             free(temp);
             start = NULL;
@@ -876,7 +876,7 @@ void deleteNode(char usn[]) {
     }
 
     while (temp != NULL) {
-        if (strcmpi(temp->usn, usn) == 0)
+        if (strcmp(temp->usn, usn) == 0)
             break;
         temp = temp->rptr;
     }
@@ -965,7 +965,7 @@ int main() {
                 printf("Enter the USN of the student to be deleted from the list: (Enter 0 to skip)\n");
                 char usn[20];
                 scanf("%s", usn);
-                if (strcmpi(usn, "0") == 0) {
+                if (strcmp(usn, "0") == 0) {
                     break;
                 }
                 deleteNode(usn);
